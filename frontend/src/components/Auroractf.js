@@ -10,10 +10,11 @@ import laptop from "../images/laptop.svg"
 
 export const Auroractf = () => {
     return (
-        <div className="p-10 text-white">
-
-        <div className="grid bg-aurora-bg bg-cover md:grid-cols-2 grid-cols-1 rounded-3xl ">
+        <div className="p-10">
+        <div className="text-white bg-aurora-bg bg-cover bg-center rounded-3xl">
             <img src={ctfevents} alt="" className="col-span-2 mx-auto"/>
+        <div className="grid  md:grid-cols-2 grid-cols-1 rounded-3xl ">
+
             <div className="flex justify-center align-middle">
                 <img className="m-auto mt-6" src={hecker}></img>
             </div>
@@ -55,6 +56,7 @@ export const Auroractf = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     )
