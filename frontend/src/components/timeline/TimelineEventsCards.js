@@ -2,7 +2,7 @@ import { Button, Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import React, { useState } from "react";
 import TitleStuff from "../Title_Stuff";
 import EventCheck from "../EventCheck";
-
+// import "./styles.css"
 // Separate arrays for titles, times, dates, and images
 const titles = [
   "ACM",
@@ -27,7 +27,6 @@ const times = [
   "05:30PM - 08:30PM",
   "05:30PM - 08:30PM",
   "05:30PM - 08:30PM",
-  
 ];
 const dates = [
   "3rd February, 2024",

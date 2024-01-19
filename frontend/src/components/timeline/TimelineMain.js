@@ -68,7 +68,7 @@ const TimelineMain = () => {
 
       //height of solid line
       const scrollPercentage = (window.scrollY / timelineHeight) * -65;
-      const adjustedPercentage = Math.min(214, newScrollPercentage * 2.39);
+      const adjustedPercentage = Math.min(170, newScrollPercentage * 2.39);
       console.log(adjustedPercentage);
 
       document.querySelector(".vertical-solid-line").style.height =
@@ -121,15 +121,13 @@ const TimelineMain = () => {
       //height of solid line
       // const scrollPercentageMobile = (window.scrollY / timelineHeight) * -65;
       const adjustedPercentageMobile = Math.min(
-        289,
+        230,
         Math.abs(newScrollPercentageMobile * 1.1)
       );
       console.log(adjustedPercentageMobile);
 
       document.querySelector(".vertical-solid-line-mobile").style.height =
         adjustedPercentageMobile + "rem";
-      //   document.querySelector(".vertical-dashed-line-mobile").style.height =
-      //     adjustedPercentageMobile + "rem";
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -138,13 +136,59 @@ const TimelineMain = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  const titles = [
+    "ACM",
+    "DRONAID",
+    "MIST",
+    "ISTE",
+    "GDSC",
+    "ISTE2",
+    "IE MECH",
+    "IEEE",
+    "Event 9",
+  ];
 
-  const timelineCards = Array.from({ length: 11 }, (_, index) => ({
-    title: `Event ${index + 1}`,
-    time: "05:30PM - 08:00PM",
-    date: `4th January, 2024`,
-    image: neuralnetworks,
-  }));
+  const times = [
+    "05:30PM - 08:30PM & 10:00AM - 05:00PM",
+    "05:30PM - 08:30PM & 10:00AM - 05:00PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+    "05:30PM - 08:30PM",
+  ];
+  const dates = [
+    "3rd February, 2024",
+    "4th February, 2024",
+    "4th February, 2024",
+    "5th February, 2024",
+
+    "5th February, 2024",
+    "6th February, 2024",
+    "6th February, 2024",
+    "7th February, 2024",
+    "7th February, 2024",
+  ];
+  const images = [
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+    require("../../images/1st.svg").default,
+  ];
+  // const timelineCards = Array.from({ length: 11 }, (_, index) => ({
+  //   title: `Event ${index + 1}`,
+  //   time: "05:30PM - 08:00PM",
+  //   date: `4th January, 2024`,
+  //   image: neuralnetworks,
+  // }));
 
   return (
     <>
@@ -195,7 +239,7 @@ const TimelineMain = () => {
                 },
               }}
             >
-              {timelineCards.map((card, index) => (
+              {titles.map((titles, index) => (
                 <div
                   key={index}
                   className="timeline-card py-5"
@@ -211,16 +255,16 @@ const TimelineMain = () => {
                   <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card">
                     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                       <p className="text-tiny uppercase font-bold">
-                        {card.time}
+                        {times[index]}
                       </p>
-                      <small className="text-default-500">{card.date}</small>
-                      <h4 className="font-bold text-large">{card.title}</h4>
+                      <small className="text-default-500">{dates[index]}</small>
+                      <h4 className="font-bold text-large">{titles}</h4>
                     </CardHeader>
                     <CardBody className="overflow-visible py-2">
                       <Image
                         alt="Card background"
                         className="object-cover rounded-xl"
-                        src={card.image}
+                        src={images[index]}
                         width={270}
                       />
                       <div className="w-16 mt-6"></div>
@@ -270,7 +314,7 @@ const TimelineMain = () => {
                 alignItems: "center",
               }}
             >
-              {timelineCards.map((card, index) => (
+              {titles.map((titles, index) => (
                 <div
                   key={index}
                   className="timeline-card-mobile py-5"
@@ -284,16 +328,18 @@ const TimelineMain = () => {
                     <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card">
                       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                         <p className="text-tiny uppercase font-bold">
-                          {card.time}
+                          {times[index]}
                         </p>
-                        <small className="text-default-500">{card.date}</small>
-                        <h4 className="font-bold text-large">{card.title}</h4>
+                        <small className="text-default-500">
+                          {dates[index]}
+                        </small>
+                        <h4 className="font-bold text-large">{titles}</h4>
                       </CardHeader>
                       <CardBody className="overflow-visible py-2">
                         <Image
                           alt="Card background"
                           className="object-cover rounded-xl"
-                          src={card.image}
+                          src={images[index]}
                           width={270}
                         />
                         <div className="w-16 mt-6"></div>
