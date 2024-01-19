@@ -68,7 +68,7 @@ const TimelineMain = () => {
 
       //height of solid line
       const scrollPercentage = (window.scrollY / timelineHeight) * -65;
-      const adjustedPercentage = Math.min(214, newScrollPercentage * 2.8);
+      const adjustedPercentage = Math.min(214, newScrollPercentage * 2.39);
       console.log(adjustedPercentage);
 
       document.querySelector(".vertical-solid-line").style.height =
@@ -151,10 +151,10 @@ const TimelineMain = () => {
       {/* desktop timeline  */}
       <div
         id="timeline"
-        className={windowSize[0] > 760 ? "bg-black" : "hidden"}
+        className={windowSize[0] > 760 ? "bg-transparent" : "hidden"}
       >
         <TitleStuff name="timeline" />
-        <div className="timeline-container">
+        <div className="timeline-container relative top-[-20rem]">
           <div
             className="my-timeline"
             style={{ position: "relative", margin: "280px auto" }}
@@ -169,7 +169,7 @@ const TimelineMain = () => {
               }}
             ></div>
             <div
-              className="vertical-solid-line absolute left-0 top-0 bg-transparent m-auto w-1 glow"
+              className="vertical-solid-line absolute left-[-0.1rem] top-0 bg-transparent m-auto w-2 glow"
               style={{
                 marginLeft: "50%",
                 marginTop: "200px",
