@@ -208,7 +208,8 @@ const TimelineMain = () => {
                     width: "fit-content",
                   }}
                 >
-                  <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card">
+                  <div className="card-glow rounded-3xl">
+                  <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card card-glow">
                     <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                       <p className="text-tiny uppercase font-bold">
                         {card.time}
@@ -226,6 +227,7 @@ const TimelineMain = () => {
                       <div className="w-16 mt-6"></div>
                     </CardBody>
                   </Card>
+                  </div>
                 </div>
               ))}
             </div>
@@ -280,8 +282,8 @@ const TimelineMain = () => {
                     width: "fit-content", // Adjust the width as needed
                   }}
                 >
-                  <div>
-                    <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card">
+                  <div className="card-glow rounded-3xl">
+                    <Card className="py-4 lg:w-[20rem] w-[14rem] custom-timeline-card card-glow">
                       <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
                         <p className="text-tiny uppercase font-bold">
                           {card.time}
