@@ -42,7 +42,7 @@ const TimelineMain = () => {
       const circle = document.querySelector(".timeline-circle");
       const dashedLine = document.querySelector(".vertical-dashed-line");
       const solidLine = document.querySelector(".vertical-solid-line");
-
+      const circleMobile = document.querySelector(".timeline-circle-mobile");
       if (!firstCard || !lastCard || !circle || !dashedLine || !solidLine)
         return;
 
@@ -69,17 +69,16 @@ const TimelineMain = () => {
       dashedLine.style.height = `${dashedLineHeight}px`;
       solidLine.style.zIndex = newScrollPercentage > 0 ? 2 : 0;
 
+      const adjustedPercentage = Math.min(178, newScrollPercentage * 2.5);
+      document.querySelector(".vertical-solid-line").style.height =
+        adjustedPercentage + "rem";
       const circleTop =
-        (newScrollPercentage / 267) * maxTimelineHeight +
+        (adjustedPercentage / 700) * maxTimelineHeight +
         firstCardTop -
         startScrollPosition -
         circle.offsetHeight / 2;
 
       circle.style.top = circleTop + "px";
-      const adjustedPercentage = Math.min(178, newScrollPercentage * 2.39);
-      document.querySelector(".vertical-solid-line").style.height =
-        adjustedPercentage + "rem";
-
       // Handle mobile timeline
       const firstCardMobile = document.querySelector(
         ".timeline-card-mobile:first-child"
@@ -118,7 +117,7 @@ const TimelineMain = () => {
           100,
           ((window.scrollY - startScrollPositionMobile) /
             maxTimelineHeightMobile) *
-            100
+            200
         )
       );
 
@@ -137,12 +136,15 @@ const TimelineMain = () => {
       document.querySelector(".vertical-solid-line-mobile").style.height =
         adjustedPercentageMobile + "rem";
 
-      // Update lastScrollY for the next iteration
-      const scrollSpeed = (window.scrollY - lastScrollY) / 50000000;
-      const newTopPosition = circleRef.current.offsetTop + scrollSpeed;
-      circleRef.current.style.top = newTopPosition + "px";
+      if (circleMobile) {
+        const circleTopMobile =
+          (adjustedPercentageMobile / 400) * maxTimelineHeightMobile +
+          firstCardTopMobile -
+          startScrollPositionMobile -
+          circleMobile.offsetHeight / 2;
 
-      lastScrollY = window.scrollY;
+        circleMobile.style.top = circleTopMobile + "px";
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -227,7 +229,7 @@ const TimelineMain = () => {
                 position: "fixed",
                 width: "30px",
                 height: "30px",
-                backgroundColor: "white",
+                backgroundColor: "blue",
                 borderRadius: "50%",
                 top: "50%",
                 left: "49.1%", // Move the circle to the left
@@ -328,12 +330,12 @@ const TimelineMain = () => {
                 position: "fixed",
                 width: "30px",
                 height: "30px",
-                backgroundColor: "white",
+                backgroundColor: "blue",
                 borderRadius: "50%",
                 top: "50%",
-                left: "49.1%", // Move the circle to the left
+                left: "7.2%", // Move the circle to the left
                 zIndex: 3,
-                opacity: scrollPercentage > 0 ? 1 : 0,
+                opacity: scrollPercentageMobile > 0 ? 1 : 0,
                 transition: "opacity 0.5s ease",
               }}
             ></div>

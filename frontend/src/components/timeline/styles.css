@@ -79,17 +79,7 @@
 /* Add this to your existing CSS or create a new style block */
 
 /* Circle styling */
-.circle {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px; /* Adjust the width as needed */
-  height: 50px; /* Adjust the height as needed */
-  background-color: rgba(0, 0, 255, 1);
-  border-radius: 50%;
-  transition: top 1.5s ease;
-  z-index: 3; /* Ensure the circle is on top of other elements */
-}
+
 
 /* Glow effect for the circle */
 .circle.glow {
