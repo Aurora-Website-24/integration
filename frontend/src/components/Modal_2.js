@@ -110,7 +110,7 @@ const Modal_2 = ({ toggleModal, index }) => {
                 </p>
               </div>
               <div className="my-4 text-lg">
-                <h2 className="mt-2 p-2">Conducted by: ACM Manipal</h2>
+                <h2 className="mt-2 p-2">Conducted by: DRONAID Manipal</h2>
               </div>
             </div>
           </div>

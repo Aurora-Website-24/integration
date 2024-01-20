@@ -2,11 +2,20 @@ import { Button, Card, CardBody, CardHeader, Image } from "@nextui-org/react";
 import React, { useState } from "react";
 import TitleStuff from "../Title_Stuff";
 import EventCheck from "../EventCheck";
+import W_iste1 from "../../images/W-iste1.svg";
+import W_acm from "../../images/W_acm.svg";
+import W_ieee from "../../images/W-ieee.svg";
+import W_iemech from "../../images/W-iemech.svg";
+import W_astronomy from "../../images/W_astronomy.svg";
+import W_dronaid from "../../images/W_dronaid.svg";
+import W_gdsc from "../../images/ChatBot.svg";
+import W_iste2 from "../../images/AppDev.svg";
+import W_mist from "../../images/Cybersec.svg";
 // import "./styles.css"
 // Separate arrays for titles, times, dates, and images
 const titles = [
   "ACM",
-  "DRONEAID",
+  "DRONAID",
   "MIST",
   "ISTE",
   "GDSC",
@@ -29,27 +38,27 @@ const times = [
   "05:30PM - 08:30PM",
 ];
 const dates = [
-  "3rd February, 2024",
-  "4th February, 2024",
-  "4th February, 2024",
-  "5th February, 2024",
+  "3rd February, 2024 & 4th February, 2024",
+  "3rd February, 2024 & 4th February, 2024",
+  "5th February, 2024 & 6th February, 2024",
+  "5th February, 2024 & 6th February, 2024",
 
-  "5th February, 2024",
-  "6th February, 2024",
-  "6th February, 2024",
-  "7th February, 2024",
-  "7th February, 2024",
+  "7th February, 2024 & 8th February, 2024",
+  "7th February, 2024 & 8th February, 2024",
+  "9th February, 2024",
+  "9th February, 2024",
+  "9th February, 2024",
 ];
 const images = [
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
-  require("../../images/1st.svg").default,
+  W_acm,
+  W_dronaid,
+  W_mist,
+  W_iste1,
+  W_gdsc,
+  W_iste2,
+  W_iemech,
+  W_ieee,
+  W_astronomy,
 ];
 
 const modalComponents = Array.from(
