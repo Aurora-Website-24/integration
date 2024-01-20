@@ -23,6 +23,7 @@
 
 .timeline-card {
   margin-top: 250px;
+  transition: transform 0.3s, box-shadow 0.3s, border-radius 0.3s;
 }
 
 /* Media query for screens smaller than 768px */
@@ -32,10 +33,7 @@
     transition: top 15s ease, opacity 1.5s ease;
   }
 
-  .vertical-dashed-line {
-    margin-left: 10px;
-  }
-
+  .vertical-dashed-line,
   .vertical-solid-line {
     margin-left: 10px;
     transition: top 1.5s ease;
@@ -54,16 +52,51 @@
     grid-column-gap: 10px;
   }
 }
-.timeline-card.glow {
+
+/* .timeline-card.glow {
   transform: translateY(-10px);
   box-shadow: 0 5px 30px rgba(17, 172, 228, 0.9);
-  border-radius: 10%; /* Adjust the border-radius value as needed */
+  border-radius: 11%;
   transition: transform 0.3s, box-shadow 0.3s, border-radius 0.3s;
-}
+  z-index: 3;
+} */
 
 .vertical-solid-line.glow {
-  box-shadow: 0 5px 40px rgba(17, 172, 228, 1);
-  /* width: 5px; */
+  box-shadow: 0 15px 60px rgba(255, 255, 255, 1);
   border-radius: 10%; /* Adjust the border-radius value as needed */
   transition: transform 0.3s, box-shadow 0.3s, border-radius 0.3s;
+  z-index: 2; /* Adjust the z-index value */
+}
+
+/* Additional adjustments */
+.vertical-dashed-line,
+.vertical-solid-line,
+.vertical-dashed-line-mobile,
+.vertical-solid-line-mobile {
+  position: sticky;
+  top: 0;
+}
+/* Add this to your existing CSS or create a new style block */
+
+/* Circle styling */
+.circle {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px; /* Adjust the width as needed */
+  height: 50px; /* Adjust the height as needed */
+  background-color: rgba(0, 0, 255, 1);
+  border-radius: 50%;
+  transition: top 1.5s ease;
+  z-index: 3; /* Ensure the circle is on top of other elements */
+}
+
+/* Glow effect for the circle */
+.circle.glow {
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.8);
+}
+
+/* Ensure the circle is on top of other elements */
+.circle.z-index {
+  z-index: 3;
 }

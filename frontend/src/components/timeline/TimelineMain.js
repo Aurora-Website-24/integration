@@ -1,5 +1,5 @@
 import { Card, CardBody, CardHeader, Image } from "@nextui-org/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import neuralnetworks from "../../images/neuralnetworks.png";
 
 import TitleStuff from "../Title_Stuff";
@@ -15,6 +15,8 @@ const TimelineMain = () => {
     window.innerWidth, //0
     window.innerHeight, //1
   ]);
+  const circleRef = useRef(null);
+  let lastScrollY = 0;
   useEffect(() => {
     const maxTimelineHeight =
       (document.querySelectorAll(".timeline-container").length - 1) * 100;
@@ -37,11 +39,12 @@ const TimelineMain = () => {
     const handleScroll = () => {
       const firstCard = document.querySelector(".timeline-card:first-child");
       const lastCard = document.querySelector(".timeline-card:last-child");
-
+      const circle = document.querySelector(".timeline-circle");
       const dashedLine = document.querySelector(".vertical-dashed-line");
       const solidLine = document.querySelector(".vertical-solid-line");
 
-      if (!firstCard || !lastCard) return;
+      if (!firstCard || !lastCard || !circle || !dashedLine || !solidLine)
+        return;
 
       const firstCardRect = firstCard.getBoundingClientRect();
       const lastCardRect = lastCard.getBoundingClientRect();
@@ -59,22 +62,25 @@ const TimelineMain = () => {
       );
 
       setScrollPercentage(newScrollPercentage);
-
+      const screenHeight = window.innerHeight;
       const firstCardTop = firstCardRect.top + window.scrollY;
       const lastCardBottom = lastCardRect.bottom + window.scrollY;
       const dashedLineHeight = lastCardBottom - firstCardTop;
       dashedLine.style.height = `${dashedLineHeight}px`;
       solidLine.style.zIndex = newScrollPercentage > 0 ? 2 : 0;
 
-      //height of solid line
-      const scrollPercentage = (window.scrollY / timelineHeight) * -65;
-      const adjustedPercentage = Math.min(170, newScrollPercentage * 2.39);
-      console.log(adjustedPercentage);
+      const circleTop =
+        (newScrollPercentage / 267) * maxTimelineHeight +
+        firstCardTop -
+        startScrollPosition -
+        circle.offsetHeight / 2;
 
+      circle.style.top = circleTop + "px";
+      const adjustedPercentage = Math.min(178, newScrollPercentage * 2.39);
       document.querySelector(".vertical-solid-line").style.height =
         adjustedPercentage + "rem";
 
-      //mobile
+      // Handle mobile timeline
       const firstCardMobile = document.querySelector(
         ".timeline-card-mobile:first-child"
       );
@@ -88,7 +94,13 @@ const TimelineMain = () => {
         ".vertical-solid-line-mobile"
       );
 
-      if (!firstCardMobile || !lastCardMobile) return;
+      if (
+        !firstCardMobile ||
+        !lastCardMobile ||
+        !dashedLineMobile ||
+        !solidLineMobile
+      )
+        return;
 
       const firstCardRectMobile = firstCardMobile.getBoundingClientRect();
       const lastCardRectMobile = lastCardMobile.getBoundingClientRect();
@@ -103,10 +115,10 @@ const TimelineMain = () => {
       const newScrollPercentageMobile = Math.max(
         0,
         Math.min(
-          300,
+          100,
           ((window.scrollY - startScrollPositionMobile) /
             maxTimelineHeightMobile) *
-            300
+            100
         )
       );
 
@@ -118,16 +130,19 @@ const TimelineMain = () => {
       dashedLineMobile.style.height = `${dashedLineHeightMobile}px`;
       solidLineMobile.style.zIndex = newScrollPercentageMobile > 0 ? 2 : 0;
 
-      //height of solid line
-      // const scrollPercentageMobile = (window.scrollY / timelineHeight) * -65;
       const adjustedPercentageMobile = Math.min(
-        230,
-        Math.abs(newScrollPercentageMobile * 1.1)
+        270,
+        newScrollPercentageMobile * 2.39
       );
-      console.log(adjustedPercentageMobile);
-
       document.querySelector(".vertical-solid-line-mobile").style.height =
         adjustedPercentageMobile + "rem";
+
+      // Update lastScrollY for the next iteration
+      const scrollSpeed = (window.scrollY - lastScrollY) / 50000000;
+      const newTopPosition = circleRef.current.offsetTop + scrollSpeed;
+      circleRef.current.style.top = newTopPosition + "px";
+
+      lastScrollY = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -136,6 +151,7 @@ const TimelineMain = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   const titles = [
     "ACM",
     "DRONAID",
@@ -173,15 +189,15 @@ const TimelineMain = () => {
     "7th February, 2024",
   ];
   const images = [
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
-    require("../../images/1st.svg").default,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
+    neuralnetworks,
   ];
   // const timelineCards = Array.from({ length: 11 }, (_, index) => ({
   //   title: `Event ${index + 1}`,
@@ -203,13 +219,31 @@ const TimelineMain = () => {
             className="my-timeline"
             style={{ position: "relative", margin: "280px auto" }}
           >
+            {/* Timeline Circle */}
+            <div
+              ref={circleRef} // Set a ref to access the circle element
+              className="timeline-circle"
+              style={{
+                position: "fixed",
+                width: "30px",
+                height: "30px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                top: "50%",
+                left: "49.1%", // Move the circle to the left
+                zIndex: 3,
+                opacity: scrollPercentage > 0 ? 1 : 0,
+                transition: "opacity 0.5s ease",
+              }}
+            ></div>
+
             {/* Vertical Dashed Line */}
             <div
               className="vertical-dashed-line absolute left-0 top-0 bg-transparent w-1 h-full"
               style={{
                 marginLeft: "50%",
                 marginTop: "200px", // Set the left margin for the vertical line
-                backgroundImage: `repeating-linear-gradient(transparent, transparent 10px, white 10px, white 20px)`, // Vertical dashed line background
+                backgroundImage: `repeating-linear-gradient(transparent, transparent 10px, blue 10px, blue 20px)`, // Vertical dashed line background
               }}
             ></div>
             <div
@@ -217,7 +251,7 @@ const TimelineMain = () => {
               style={{
                 marginLeft: "50%",
                 marginTop: "200px",
-                background: "white",
+                background: "rgba(0, 0, 255, 1)",
                 transition: "top 1.5s ease",
               }}
             ></div>
@@ -287,13 +321,29 @@ const TimelineMain = () => {
             className="my-timeline"
             style={{ position: "relative", margin: "280px auto" }}
           >
+            <div
+              ref={circleRef} // Set a ref to access the circle element
+              className="timeline-circle-mobile"
+              style={{
+                position: "fixed",
+                width: "30px",
+                height: "30px",
+                backgroundColor: "white",
+                borderRadius: "50%",
+                top: "50%",
+                left: "49.1%", // Move the circle to the left
+                zIndex: 3,
+                opacity: scrollPercentage > 0 ? 1 : 0,
+                transition: "opacity 0.5s ease",
+              }}
+            ></div>
             {/* Vertical Dashed Line */}
             <div
               className="vertical-dashed-line-mobile absolute left-0 top-0 bg-transparent w-1 h-full"
               style={{
                 marginLeft: "40px", // Adjusted the left margin for the vertical line
                 marginTop: "60px", // Set the top margin for the vertical line
-                backgroundImage: `repeating-linear-gradient(transparent, transparent 10px, white 10px, white 20px)`, // Vertical dashed line background
+                backgroundImage: `repeating-linear-gradient(transparent, transparent 10px, blue 10px, blue 20px)`, // Vertical dashed line background
               }}
             ></div>
             <div
@@ -301,7 +351,7 @@ const TimelineMain = () => {
               style={{
                 marginLeft: "40px", // Adjusted the left margin for the vertical line
                 marginTop: "100px",
-                background: "white",
+                background: "rgba(0, 0, 255, 1)",
                 transition: "top 1.5s ease",
               }}
             ></div>
