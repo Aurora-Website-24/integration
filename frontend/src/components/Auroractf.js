@@ -75,5 +75,9 @@ export const Auroractf = () => {
         </div>
         </div>
         </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0abb72e9f6eb15a1eb10baf1c9b23f0b921f606b
     )
 }
