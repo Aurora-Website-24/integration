@@ -7,6 +7,7 @@ const session = require("express-session")
 const passport = require("passport")
 const OAuth2Strategy = require("passport-google-oauth2").Strategy
 require("./database/connection")
+const googledb = require("./model/googleSchema")
 const userdb = require("./model/userSchema")
 const hackathon = require("./model/hackathonSchema")
 
@@ -41,25 +42,14 @@ passport.use(
     },
         async (accessToken, refreshToken, profile, done) => {
             try {
-                let user = await userdb.findOne({ googleId: profile.id });
+                let user = await googledb.findOne({ googleId: profile.id });
 
                 if (!user) {
-                    user = new userdb({
+                    user = new googledb({
                         googleId: profile.id,
                         googleName: profile.displayName,
                         email: profile.emails[0].value,
                         registered: false,
-
-                        // name: "null",
-                        // phoneNo: 0,
-                        // regNo: 0,
-                        // branch: "null",
-                        // year: 0,
-                        // learnerid: "null",
-                        // upiID: "null",
-                        // txnID: "null",
-                        // screenshot: "null",
-                        // workshops: [],
                     });
 
                     await user.save();
@@ -119,10 +109,9 @@ app.get("/logout", (req, res, next) => {
     })
 })
 
-
-app.patch('/register/:id', async (req, res) => {
+app.patch('/update-google-data/:id', async (req, res) => {
     try {
-        const registered = await userdb.findByIdAndUpdate(
+        const registered = await googledb.findByIdAndUpdate(
             req.params.id,
             req.body,
         );
@@ -130,6 +119,19 @@ app.patch('/register/:id', async (req, res) => {
     } catch (error) {
         res.status(500).send(error.message);
         console.log(error.message);
+    }
+})
+
+app.post('/register-user' , async (req, res) => {
+    try {
+        user = new userdb(
+            req.body,
+        );
+
+        await user.save();
+        res.status(200).json(user)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 })
 
@@ -146,15 +148,21 @@ app.patch('/workshop-registration/:id', async (req, res) => {
     }
 })
 
-// app.get('/hackathon-team-data', async (req, res) => {
-//     try {
-//         const teamData = await hackathon.find({ learnerid: req.query.learnerid });
-//         res.send(teamData);
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
+app.get('/get-user-data', async (req, res) => {
+    try {
+        const userData = await userdb.findOne({ email: req.query.email });
+
+        if (userData) {
+            res.status(200).json(userData);
+        } else {
+            res.status(404).json({ message: 'User not found' });
+        }
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 app.post('/hackathon-registration', async (req, res) => {
     try {
@@ -195,19 +203,6 @@ app.get('/get-all-workshops-registrations', async(req, res) => {
         console.log(error)
     }
 });
-
-// app.patch('/hackathon-update-form/:id', async (req, res) => {
-//     try {
-//         const hackathonUpdate = await hackathon.findByIdAndUpdate(
-//             req.params.id,
-//             req.body,
-//         );
-//         res.send(hackathonUpdate);
-//     } catch (error) {
-//         res.status(500).send(error.message);
-//         console.log(error.message);
-//     }
-// })
 
 app.listen(PORT, () => {
     console.log(`server start at port no ${PORT}`)

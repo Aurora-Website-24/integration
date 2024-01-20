@@ -121,7 +121,7 @@ const TimelineMain = () => {
       //height of solid line
       // const scrollPercentageMobile = (window.scrollY / timelineHeight) * -65;
       const adjustedPercentageMobile = Math.min(
-        289,
+        290,
         Math.abs(newScrollPercentageMobile * 1.1)
       );
       console.log(adjustedPercentageMobile);
@@ -151,10 +151,10 @@ const TimelineMain = () => {
       {/* desktop timeline  */}
       <div
         id="timeline"
-        className={windowSize[0] > 760 ? "bg-black" : "hidden"}
+        className={windowSize[0] > 760 ? "bg-transparent" : "hidden"}
       >
         <TitleStuff name="timeline" />
-        <div className="timeline-container">
+        <div className="timeline-container relative top-[-20rem]">
           <div
             className="my-timeline"
             style={{ position: "relative", margin: "280px auto" }}
@@ -169,7 +169,7 @@ const TimelineMain = () => {
               }}
             ></div>
             <div
-              className="vertical-solid-line absolute left-0 top-0 bg-transparent m-auto w-1 glow"
+              className="vertical-solid-line absolute left-[-0.1rem] top-0 bg-transparent m-auto w-2 glow"
               style={{
                 marginLeft: "50%",
                 marginTop: "200px",
@@ -184,15 +184,15 @@ const TimelineMain = () => {
                 display: "grid",
                 gridTemplateColumns: "1fr",
                 justifyItems: "center", // Centering the cards
-                "@media (max-width: 640px)": {
-                  gridTemplateColumns: "1fr", // Change to one column for smaller screens
-                  gridRowGap: "100px",
-                  marginLeft: "20px", // Adjust margin for smaller screens
-                },
-                "@media (min-width: 1024px and max-width: 641px)": {
-                  gridColumnGap: "100px",
-                  gridTemplateColumns: "repeat(2, 1fr)", // Adjust for zigzag fashion
-                },
+                // "@media (max-width: 640px)": {
+                //   gridTemplateColumns: "1fr", // Change to one column for smaller screens
+                //   gridRowGap: "100px",
+                //   marginLeft: "20px", // Adjust margin for smaller screens
+                // },
+                // "@media (min-width: 1024px and max-width: 641px)": {
+                //   gridColumnGap: "100px",
+                //   gridTemplateColumns: "repeat(2, 1fr)", // Adjust for zigzag fashion
+                // },
               }}
             >
               {timelineCards.map((card, index) => (
@@ -237,10 +237,10 @@ const TimelineMain = () => {
       {/* mobile timeline  */}
       <div
         id="timeline"
-        className={windowSize[0] <= 760 ? "bg-black" : "hidden"}
+        className={windowSize[0] <= 760 ? "bg-transparent" : "hidden"}
       >
         <TitleStuff name="timeline" />
-        <div className="timeline-container">
+        <div className="timeline-container relative top-[-10rem]">
           <div
             className="my-timeline"
             style={{ position: "relative", margin: "280px auto" }}
@@ -250,7 +250,7 @@ const TimelineMain = () => {
               className="vertical-dashed-line-mobile absolute left-0 top-0 bg-transparent w-1 h-full"
               style={{
                 marginLeft: "40px", // Adjusted the left margin for the vertical line
-                marginTop: "60px", // Set the top margin for the vertical line
+                marginTop: "80px", // Set the top margin for the vertical line
                 backgroundImage: `repeating-linear-gradient(transparent, transparent 10px, white 10px, white 20px)`, // Vertical dashed line background
               }}
             ></div>
