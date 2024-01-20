@@ -26,56 +26,56 @@ const Kiri = {
 
 const Roop = {
     name : "Roopanshi Juneja",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/roop1978",
+    linkedin : "https://www.linkedin.com/in/roopanshi-j/",
     img : roop,
     designation : "Frontend developer"
 }
 
 const Shash = {
     name : "Shashank",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/2shashank11",
+    linkedin : "https://www.linkedin.com/in/work-with-shashank?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     img : shashank,
     designation : "Backend developer"
 }
 
 const Aman = {
     name : "Aman",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/aman30gupta",
+    linkedin : "https://www.linkedin.com/in/aman-gupta-353073299/",
     img : aman,
     designation : "Junior Designer"
 }
 
 const Kshitij = {
     name : "Kshitij",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/kshitijpaliya",
+    linkedin : "https://www.linkedin.com/in/kshitij-paliya",
     img : kshitij,
     designation : "Junior Designer"
 }
 
 const Souvik = {
     name : "Souvik Goswami",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/souvik99O",
+    linkedin : "https://www.linkedin.com/in/souvik-goswami-539522268?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     img : souvik,
     designation : "Junior Designer"
 }
 
 const Aditi = {
     name : "Aditi",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/aditipy",
+    linkedin : "https://www.linkedin.com/in/aditi-sharma-6a947a213/",
     img : aditi,
     designation : "Senior Designer"
 }
 
 const Aarya = {
     name : "Aarya",
-    git_link : "https://github.com/Kirit0me",
-    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    git_link : "https://github.com/aaaaryaaa",
+    linkedin : "https://www.linkedin.com/in/aarya-r-411a53244/",
     img : aarya,
     designation : "Frontend developer"
 }
@@ -125,14 +125,14 @@ export default function Developers() {
     return (
         <>
         <Nav />
-        <div className="bg-black pt-16 bg-dev-bg">
-            <div className="p-10"><img src={meetjr} className="m-auto"></img></div>
+        <div className="bg-black pt-16 bg-dev-bg bg-center bg-full">
+            <div className="pt-10"><img src={meetjr} className="m-auto"></img></div>
             <div className="grid md:grid-cols-3 grid-cols-1 m-24">
             {Juniors.map((member) => (
                 <JuniorCard key={member.id} member={member} />
             ))}
             </div>
-            <div className="p-10"><img src={meetsr} className="m-auto"></img></div>
+            <div className="py-6"><img src={meetsr} className="m-auto"></img></div>
             <div className="grid md:grid-cols-3 grid-cols-1 m-24">
             {Seniors.map((member) => (
                 <SeniorCard key={member.id} member={member} />
