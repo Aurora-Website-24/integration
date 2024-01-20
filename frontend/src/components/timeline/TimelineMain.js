@@ -23,7 +23,7 @@ const TimelineMain = () => {
     window.innerHeight, //1
   ]);
   const circleRef = useRef(null);
-  let lastScrollY = 0;
+  // let lastScrollY = 0;
   useEffect(() => {
     const maxTimelineHeight =
       (document.querySelectorAll(".timeline-container").length - 1) * 100;
@@ -67,6 +67,7 @@ const TimelineMain = () => {
           ((window.scrollY - startScrollPosition) / maxTimelineHeight) * 100
         )
       );
+      console.log(newScrollPercentage);
 
       setScrollPercentage(newScrollPercentage);
       const screenHeight = window.innerHeight;
@@ -121,12 +122,13 @@ const TimelineMain = () => {
       const newScrollPercentageMobile = Math.max(
         0,
         Math.min(
-          100,
+          104,
           ((window.scrollY - startScrollPositionMobile) /
             maxTimelineHeightMobile) *
             200
         )
       );
+      console.log(newScrollPercentageMobile);
 
       setScrollPercentageMobile(newScrollPercentageMobile);
 
@@ -208,12 +210,6 @@ const TimelineMain = () => {
     W_ieee,
     W_astronomy,
   ];
-  // const timelineCards = Array.from({ length: 11 }, (_, index) => ({
-  //   title: `Event ${index + 1}`,
-  //   time: "05:30PM - 08:00PM",
-  //   date: `4th January, 2024`,
-  //   image: neuralnetworks,
-  // }));
 
   return (
     <>
