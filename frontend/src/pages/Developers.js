@@ -1,6 +1,16 @@
 import meetjr from "../images/MeettheTeam.svg"
 import meetsr from "../images/Meettheheads.svg"
+
+import aditi from "../images/aditi.jpg"
+import aarya from "../images/aarya.jpg"
+import aman from "../images/aman.jpg"
+import roop from "../images/roopanshi.jpg"
+import kshitij from "../images/kshitij.jpg"
+import souvik from "../images/souvik.jpg"
 import mugi from "../images/mugi.jpg"
+import shashank from "../images/shashank.jpg"
+
+
 import linkedin from '../images/bi_linkedin.svg'
 import gitlogo from '../images/github_logo.svg'
 import Nav from "../components/Nav"
@@ -10,21 +20,79 @@ const Kiri = {
     name : "Prabhav Agarwal",
     git_link : "https://github.com/Kirit0me",
     linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
-    img : mugi
+    img : mugi,
+    designation : "Frontend developer"
 }
 
-const Juniors = [Kiri, Kiri, Kiri, Kiri, Kiri, Kiri, Kiri, Kiri, Kiri, Kiri, Kiri]
-const Seniors = [Kiri, Kiri, Kiri]
+const Roop = {
+    name : "Roopanshi Juneja",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : roop,
+    designation : "Frontend developer"
+}
+
+const Shash = {
+    name : "Shashank",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : shashank,
+    designation : "Backend developer"
+}
+
+const Aman = {
+    name : "Aman",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : aman,
+    designation : "Junior Designer"
+}
+
+const Kshitij = {
+    name : "Kshitij",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : kshitij,
+    designation : "Junior Designer"
+}
+
+const Souvik = {
+    name : "Souvik Goswami",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : souvik,
+    designation : "Junior Designer"
+}
+
+const Aditi = {
+    name : "Aditi",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : aditi,
+    designation : "Senior Designer"
+}
+
+const Aarya = {
+    name : "Aarya",
+    git_link : "https://github.com/Kirit0me",
+    linkedin : "https://www.linkedin.com/in/prabhav-agarwal-a7186aa0/",
+    img : aarya,
+    designation : "Frontend developer"
+}
+
+
+const Juniors = [Kiri, Aarya, Aman, Roop, Shash, Souvik, Kshitij]
+const Seniors = [Aditi]
 
 function JuniorCard( {member} ) {
     return (
         <div className="w-5/6 p-6 m-auto backdrop-blur-sm">
 
             <div className="flex flex-col align-middle rounded-3xl border-1 border-slate-300 hover:border-slate-400 bg-aurora-bg hover:bg-gradient-to-br from-stone-800 to-bg-black bg-bottom text-white p-6">
-                <div className="p-4"><img className="rounded-full w-24 h-24 m-auto" src={member.img}></img></div>
+                <div className="p-4"><img className="rounded-full w-28 h-28 object-cover m-auto" src={member.img}></img></div>
                 <h1 className="text-center text-2xl font-bold py-4">{member.name}</h1>
                 <div className="rounded-3xl border-white border-2 p-2">
-                    <h1 className="text-center text-xl px-4"> Junior Designer </h1>
+                    <h1 className="text-center text-xl px-4"> {member.designation} </h1>
                 </div>
                 <div className="flex flex-row justify-center">
                     <a href ={member.linkedin}><button className="p-2"><img src={linkedin} alt="" /></button></a>
@@ -42,7 +110,7 @@ function SeniorCard( {member} ) {
                 <div className="p-4"><img className="rounded-full w-24 h-24 m-auto" src={member.img}></img></div>
                 <h1 className="text-center text-2xl font-bold py-4">{member.name}</h1>
                 <div className="rounded-3xl border-white border-2 p-2">
-                    <h1 className="text-center text-xl px-4"> Senior Designer </h1>
+                    <h1 className="text-center text-xl px-4"> {member.designation} </h1>
                 </div>
                 <div className="flex flex-row justify-center">
                     <a href ={member.linkedin}><button className="p-2"><img src={linkedin} alt="" /></button></a>
@@ -59,13 +127,13 @@ export default function Developers() {
         <Nav />
         <div className="bg-black pt-16 bg-dev-bg">
             <div className="p-10"><img src={meetjr} className="m-auto"></img></div>
-            <div className="grid md:grid-cols-3 grid-cols-1 ">
+            <div className="grid md:grid-cols-3 grid-cols-1 m-24">
             {Juniors.map((member) => (
                 <JuniorCard key={member.id} member={member} />
             ))}
             </div>
             <div className="p-10"><img src={meetsr} className="m-auto"></img></div>
-            <div className="grid md:grid-cols-3 grid-cols-1 ">
+            <div className="grid md:grid-cols-3 grid-cols-1 m-24">
             {Seniors.map((member) => (
                 <SeniorCard key={member.id} member={member} />
             ))}
