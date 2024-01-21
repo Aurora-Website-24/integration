@@ -8,7 +8,10 @@ const AllWorkshopsRegistrations = () => {
 
     const getGoogleData = async () => {
         try {
-            const response = await axios.get("http://localhost:6005/login/success", { withCredentials: true });
+            const response = await axios.get("/login/success", { withCredentials: true });
+            if(response){
+                
+            }
 
         } catch (error) {
             //console.log("error", error)
@@ -23,7 +26,7 @@ const AllWorkshopsRegistrations = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:6005/get-all-workshops-registrations", {
+        fetch("/get-all-workshops-registrations", {
             method: 'GET',
         })
             .then((res) => res.json())

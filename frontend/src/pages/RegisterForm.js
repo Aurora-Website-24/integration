@@ -47,18 +47,18 @@ export default function RegisterForm() {
   }
 
   const [googleData, setGoogleData] = useState({});
-  const [userData, setUserData] = useState({});
+ // const [userData, setUserData] = useState({});
 
   // console.log("response googleData", googleData)
   const navigate = useNavigate();
 
   const logout = () => {
-    window.open("http://localhost:6005/logout", "_self")
+    window.open("/logout", "_self")
   }
 
   const getGoogleData = async () => {
     try {
-      const response = await axios.get("http://localhost:6005/login/success", { withCredentials: true });
+      const response = await axios.get("/login/success", { withCredentials: true });
       console.log("response axios", response)
       setGoogleData(response.data.user)
       setFormData({ email: response.data.user.email })
@@ -119,7 +119,7 @@ export default function RegisterForm() {
     try {
       await registerUser();
       try {
-        const response = await fetch(`http://localhost:6005/update-google-data/${googleData._id}`, {
+        const response = await fetch(`/update-google-data/${googleData._id}`, {
           method: 'PATCH',
           body: JSON.stringify({ registered: true }),
           headers: {
@@ -189,7 +189,7 @@ export default function RegisterForm() {
     const uploadbg = document.getElementById('upload-box');
     if (uploadbg && formData.screenshot) {
       uploadbg.innerText = 'Uploaded';
-      uploadbg.innerHTML = `<div className='uploaded-image' style='display: flex; justify-content: center; align-items: center; color: white; font-size: 1.5rem;'><img src=${formData.screenshot} /></div>`;
+      uploadbg.innerHTML = `<div className='uploaded-image' style='display: flex; justify-content: center; align-items: center; color: white; font-size: 1.5rem;'><img src=${formData.screenshot} alt="hduh"="df" /></div>`;
     }
   }, [formData.screenshot])
 
@@ -197,7 +197,7 @@ export default function RegisterForm() {
   // Define the asynchronous function
   const registerUser = async () => {
     try {
-      const response = await fetch(`http://localhost:6005/register-user`, {
+      const response = await fetch(`/register-user`, {
         method: 'POST',
         body: JSON.stringify(formData),
         headers: {
@@ -240,7 +240,7 @@ export default function RegisterForm() {
         </div>
 
         <div className="flex justify-center text-center text-white text-[25.26px] font-medium font-['Inter'] pt-16">
-          <img src={icon} alt="" />
+          <img src={icon} alt="dghh" />
           02 Feb 2024 - 09 Feb 2024
         </div>
 

@@ -1,6 +1,6 @@
-import P1 from "../images/1stprize.svg"
-import P2 from "../images/2ndprize.svg"
-import P3 from "../images/3rdprize.svg"
+import P1 from "../images/hack1st.svg"
+import P2 from "../images/hack2nd.svg"
+import P3 from "../images/hack3rd.svg"
 
 export const PrizesHackathon = () => {
     return(
@@ -10,16 +10,16 @@ export const PrizesHackathon = () => {
             </div>
             <div className="flex flex-col items-center justify-center">
                 <div className="p-6 flex-col items-center"> 
-                    <img src={P1} alt=""></img> 
+                    <img src={P1} alt="hd"></img> 
                     <span className="flex justify-center w-full text-yellow-300 font-bold p-4 text-3xl">Rs. 7000 </span>
                 </div>
                 <div className="flex flex-row justify-center flex-wrap">
                     <div className="p-6 flex-col items-center"> 
-                        <img src={P2} alt=""></img> 
+                        <img src={P2} alt="h"></img> 
                         <span className="flex justify-center w-full text-[#BBB4A4] font-bold p-4 text-3xl">Rs. 4000 </span>
                     </div>
                     <div className="p-6 flex-col items-center"> 
-                        <img src={P3} alt=""></img> 
+                        <img src={P3} alt="hd"></img> 
                         <span className="flex justify-center w-full text-[#865058] font-bold p-4 text-3xl">Rs. 2000 </span>
                     </div>
                 </div>
